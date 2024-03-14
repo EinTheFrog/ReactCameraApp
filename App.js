@@ -1,45 +1,20 @@
-import { Camera, CameraType } from 'expo-camera';
-import { useState } from 'react';
-import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView, Text, StyleSheet } from 'react-native'
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator()
+
+import MenuScreen from './screens/MenuScreen';
+import CallScreen from './screens/CallScreen';
 
 export default function App() {
-  const [type, setType] = useState(CameraType.back);
-  const [permission, requestPermission] = Camera.useCameraPermissions();
-
-  if (!permission) {
-    requestPermission()
-  }
-
-  if (permission && !permission.granted) {
-    return(
-      <View style={styles.container}>
-      <Text>No permission</Text>
-      </View>
+    return (
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen name='Menu' component={MenuScreen} />
+                <Stack.Screen name='Call' component={CallScreen} />
+            </Stack.Navigator>
+        </NavigationContainer>
     )
-  } 
-
-  function toggleCameraType() {
-    setType(current => (current === CameraType.back ? CameraType.front : CameraType.back));
-  }
-
-  return (
-    <View style={styles.container}>
-      <Camera style={styles.camera} type={type}>
-      </Camera>
-    </View>
-  );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  camera: {
-    flex: 1
-  },
-  buttonContainer: {
-    flex: 1,
-    alignContent: 'center'
-  }
-});

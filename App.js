@@ -11,9 +11,9 @@ import CallScreen from './screens/CallScreen';
 export default function App() {
     return (
         <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen name='Menu' component={MenuScreen} />
-                <Stack.Screen name='Call' component={CallScreen} />
+            <Stack.Navigator initialRouteName='Menu'>
+                <Stack.Screen name='Menu' component={ MenuScreen } />
+                <Stack.Screen name='Call' component={ CallScreen } />
             </Stack.Navigator>
         </NavigationContainer>
     )

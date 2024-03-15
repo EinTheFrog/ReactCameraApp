@@ -13,7 +13,7 @@ export default function App() {
         <NavigationContainer>
             <Stack.Navigator initialRouteName='Menu'>
                 <Stack.Screen name='Menu' component={ MenuScreen } />
-                <Stack.Screen name='Call' component={ CallScreen } />
+                <Stack.Screen name='Call' component={ CallScreen } options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
     )

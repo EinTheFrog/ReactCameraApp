@@ -2,6 +2,7 @@ import { View, Button, StyleSheet } from 'react-native';
 import { useState } from 'react';
 import { Camera, CameraType } from 'expo-camera';
 import EndCallButton from '../components/EndCallButton';
+import CallPicture from '../components/CallPicture';
 
 export default function CallScreen({ navigation }) {
     const [type, setType] = useState(CameraType.back);
@@ -22,7 +23,10 @@ export default function CallScreen({ navigation }) {
     return (
         <View style={styles.container}>
             <Camera style={ styles.camera }>
-                <EndCallButton style={ styles.endCallButton } onPress={ () => { navigation.goBack(); } } />
+                <View style={ styles.cameraContainer }>
+                    <EndCallButton style={ styles.endCallButton } />
+                    <CallPicture style={ styles.callPicture } />
+                </View>
             </Camera>
         </View>
     );
@@ -39,11 +43,22 @@ const styles = StyleSheet.create({
     },
     camera: {
         flex: 1,
+    },
+    cameraContainer: {
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-end',
         padding: 20
     },
     endCallButton: {
         margin: 20
+    },
+    callPicture: {
+        position: 'absolute',
+        right: 20,
+        top: 60,
+        height: 120,
+        width: 90,
+        backgroundColor: '#fff',
     }
 });
